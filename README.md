@@ -5,10 +5,14 @@
 In this tutorial, we will walk you through the process of setting up an ERPNext application in a Dockerized environment using GitHub Actions. Whether you're a seasoned developer or a newcomer to ERPNext, this guide is designed to simplify the deployment process on a fresh Ubuntu server.
 
 ## Prerequisites
-You need a clean Ubuntu server. We recommend an AWS EC2 instance with specifications such as `t3:small type` boasting 2GB of RAM and 30GB of storage. Throughout the tutorial, we will explore two methods of server authorization: SSH authentication and password authentication.
+- OS : ubuntu 22.04 [i am using `aws ec2 instance` (type: t3.small)]
+- USER : user with sudo privileges [i am using `root user`]
+- USER/PASSWORD AUTHENTICATION 
 
-### Server Authentication:
-In this particular setup, we'll focus on server `authentication using a username and password`. This method is chosen for its simplicity, making it accessible to users at various skill levels.
+## Work to do: 
+- fork repo
+- define secret variables
+- run workflow
 
 ## Getting started 
 ### Fork this Repository:
@@ -17,7 +21,7 @@ To start installation, fork 🍽 this repo:
 ![image](https://github.com/Erpnext-Setup/erpnext14-with-github-actions/assets/105498424/d8eddbcb-dbe8-4247-91ac-42b01f19e505)
 
 ### Define secrets variables in actions secrets and variables:
-In a GitHub Actions workflow, you can define these variables as secrets. Secrets provide a way to store sensitive information, and they are encrypted and only exposed to runners during the execution of your workflow. Here's how you can define these secrets:
+you just need to define these variables as secrets. Secrets provide a way to store sensitive information, and they are encrypted and only exposed to runners during the execution of your workflow. Here's how you can define these secrets:
 
 Go to your GitHub repository.
 Click on `Settings` in the upper-right corner.
