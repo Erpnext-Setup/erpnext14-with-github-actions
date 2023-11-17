@@ -27,7 +27,7 @@ jobs:
             # sudo apt-get install git -y
 
             # clone the project
-            git clone https://github.com/Erpnext-Setup/erpnext14-with-github-actions.git
+            # git clone https://github.com/Erpnext-Setup/erpnext14-with-github-actions.git
 
             # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition
             # sudo sysctl vm.overcommit_memory=1
@@ -39,7 +39,7 @@ jobs:
             # docker network create erpnet
 
             # RUN MARIADB CONTAINER
-            docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnext14-with-github-actions:db
+            docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnext14-with-github-actions:db
             sleep 10
 
             # RUN FRAPPE-APP CONTAINER
@@ -48,18 +48,18 @@ jobs:
 
             docker exec erp bash -c " 
             cd frappe-bench && \
-            bench new-site ${APP_SITE_NAME} --admin-password '${ADMIN_PASSWORD}' --mariadb-root-username ${MYSQL_ROOT_USER} --mariadb-root-password ${MYSQL_ROOT_PASSWORD} --db-host erpdb && \
-            bench --site ${APP_SITE_NAME} install-app erpnext && \
+            bench new-site $APP_SITE_NAME --admin-password '$ADMIN_PASSWORD' --mariadb-root-username $MYSQL_ROOT_USER --mariadb-root-password $MYSQL_ROOT_PASSWORD --db-host erpdb && \
+            bench --site $APP_SITE_NAME install-app erpnext && \
             bench get-app branch version-14 https://github.com/yrestom/POS-Awesome.git && \
             bench setup requirements && \
             bench build --app posawesome && \
-            bench --site ${APP_SITE_NAME} install-app posawesome && \
-            cd /home/frappe/frappe-bench/sites && echo '${APP_SITE_NAME}' >currentsite.txt && \
+            bench --site $APP_SITE_NAME install-app posawesome && \
+            cd /home/frappe/frappe-bench/sites && echo "$APP_SITE_NAME" >currentsite.txt && \
             cd /home/frappe/frappe-bench && screen -dmS bench_session bash -c 'bench start' && \
             exit "
 
             # url access point
-            echo "ERP app is deployed. you can access at http://${APP_SITE_NAME}:8000"
+            echo "ERP app is deployed. you can access at http://$APP_SITE_NAME:8000"
             sleep 5
             
             # exit the machine
