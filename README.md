@@ -21,8 +21,6 @@ To start installation, fork 🍽 this repo:
 ![image](https://github.com/Erpnext-Setup/erpnext14-with-github-actions/assets/105498424/d8eddbcb-dbe8-4247-91ac-42b01f19e505)
 
 ### Define secrets variables in actions secrets and variables:
-you just need to define these variables as secrets. Secrets provide a way to store sensitive information, and they are encrypted and only exposed to runners during the execution of your workflow. Here's how you can define these secrets:
-
 Go to your GitHub repository.
 Click on `Settings` in the upper-right corner.
 In the left sidebar, click on `Secrets`
