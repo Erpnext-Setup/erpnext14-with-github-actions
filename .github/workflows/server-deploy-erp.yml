@@ -35,22 +35,22 @@ jobs:
         
         script: |
             # installing docker
-            # sudo apt-get update && sudo apt-get install docker.io -y
+            sudo apt-get update && sudo apt-get install docker.io -y
 
             # installing git
-            # sudo apt-get install git -y
+            sudo apt-get install git -y
 
             # clone the project
-            # git clone https://github.com/Erpnext-Setup/erpnext14-with-github-actions.git
+            git clone https://github.com/Erpnext-Setup/erpnext14-with-github-actions.git
 
             # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition
-            # sudo sysctl vm.overcommit_memory=1
+            sudo sysctl vm.overcommit_memory=1
 
             # navigate toe cloned repoo
             cd erpnext14-with-github-actions
            
             # CREATE NETWORK
-            # docker network create erpnet
+            docker network create erpnet
 
             # RUN MARIADB CONTAINER
             docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnext14-with-github-actions:db
@@ -71,10 +71,6 @@ jobs:
             cd /home/frappe/frappe-bench/sites && echo "$APP_SITE_NAME" >currentsite.txt && \
             cd /home/frappe/frappe-bench && screen -dmS bench_session bash -c 'bench start' && \
             exit "
-
-            # url access point
-            echo "ERP app is deployed. you can access at http://$APP_SITE_NAME:8000"
-            sleep 5
             
             # exit the machine
             exit
