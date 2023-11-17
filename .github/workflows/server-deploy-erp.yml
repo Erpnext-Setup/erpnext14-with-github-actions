@@ -2,7 +2,7 @@ name: deploy Erp app
 
 on:
   push:
-    branches: [ "corrupted-main" ]
+    branches: [ "main" ]
 
 jobs:
   deploy-erp:
