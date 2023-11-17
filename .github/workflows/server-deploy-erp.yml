@@ -13,6 +13,19 @@ jobs:
             
     - name: Deploy to the server
       uses: appleboy/ssh-action@master
+      env:
+        # db credentials default [1qwert2]
+        MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        MYSQL_ROOT_USER: ${{ secrets.MYSQL_ROOT_USER }}
+        
+        # erp app admin pass default [admin:321]
+        ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        
+        # ERP site url default [site.local]
+        APP_SITE_NAME: ${{ secrets.ERP_SITE_NAME }}
+
+        # access point url ip [server ip address]
+        ERP_SITE_HOST: ${{ secrets.SSH_HOST }}
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
@@ -64,12 +77,6 @@ jobs:
             
             # exit the machine
             exit
-      env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-          MYSQL_ROOT_USER: ${{ secrets.MYSQL_ROOT_USER }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-          APP_SITE_NAME: ${{ secrets.ERP_SITE_NAME }}
-          ERP_SITE_HOST: ${{ secrets.SSH_HOST }}
 
 
     - name: cleanup
