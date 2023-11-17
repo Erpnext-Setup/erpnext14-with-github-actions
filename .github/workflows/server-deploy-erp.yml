@@ -31,6 +31,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_PASSWORD }}
         timeout: 1700s
+        envs: MYSQL_ROOT_PASSWORD,MYSQL_ROOT_USER,ADMIN_PASSWORD,APP_SITE_NAME,ERP_SITE_HOST
         
         script: |
             # installing docker
