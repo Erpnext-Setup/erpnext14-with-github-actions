@@ -29,7 +29,7 @@ jobs:
             # clone the project
             # git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
 
-            # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
+            # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition
             # sudo sysctl vm.overcommit_memory=1
 
             # navigate toe cloned repoo
