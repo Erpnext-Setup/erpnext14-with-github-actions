@@ -1,0 +1,49 @@
+name: deploy erp app
+
+on:
+  push:
+    branches: [ "corrupted-main" ]
+
+jobs:
+  deploy-erp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: update system
+      run: |
+        sudo apt-get update
+
+    - name: install git
+      run: |
+        sudo apt-get install git -y
+
+    - name: install docker & docker-compose
+      run: |
+        for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+        sudo apt-get update
+        sudo apt-get install ca-certificates curl gnupg
+        sudo install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        sudo chmod a+r /etc/apt/keyrings/docker.gpg
+        echo \
+          "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+          "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update 
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        
+    - name: clone the project
+      run: |
+        sudo git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
+
+    - name: run the docker containers
+      run: |
+        cd ERPNext
+        sudo docker-compose up --build -d
+
+    - name: check running docker container
+      run: sudo docker ps
+
+
+            
+
