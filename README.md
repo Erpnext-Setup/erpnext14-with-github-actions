@@ -1,6 +1,9 @@
 # Install erpnext app with github actions
 ![Docker](https://img.shields.io/badge/Docker-23.0.3-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![ERPNext](https://img.shields.io/badge/ERPNext-v14-%2343853D.svg?style=for-the-badge&logo=erpnext&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-10.8-%234479A1.svg?style=for-the-badge&logo=mariadb&logoColor=white) ![Python](https://img.shields.io/badge/Python-3.10-%234B8BBE.svg?style=for-the-badge&logo=python&logoColor=white)
 
+![dockerized erpnext 14 with github](https://github.com/Erpnext-Setup/erpnext14-with-github-actions/assets/105498424/029354ff-4942-40b2-b7cb-4a89f42f766b)
+
+
 ## Introduction
 In this tutorial, we will walk you through the process of setting up an ERPNext application in a Dockerized environment using GitHub Actions. Whether you're a seasoned developer or a newcomer to ERPNext, this guide is designed to simplify the deployment process on a fresh Ubuntu server.
 
